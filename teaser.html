@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A surprise for TiTa 🥺❤️‍🩹</title>
+
+  <style>
+    :root {
+      --night: #070a13;
+      --blue: #121c38;
+      --gold: #eac66b;
+      --cream: #fffaf0;
+      --muted: #d9d9dc;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      color: var(--cream);
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(72, 104, 175, 0.26), transparent 30%),
+        radial-gradient(circle at 85% 80%, rgba(234, 198, 107, 0.15), transparent 28%),
+        linear-gradient(135deg, #050710, var(--blue), var(--night));
+    }
+
+    .stars {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 0 12px white;
+      animation: twinkle 2.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.2; transform: scale(0.7); }
+      to { opacity: 1; transform: scale(1.5); }
+    }
+
+    .card {
+      width: min(92%, 800px);
+      margin: 25px;
+      padding: clamp(35px, 7vw, 75px) clamp(22px, 6vw, 70px);
+      text-align: center;
+      border: 1px solid rgba(234, 198, 107, 0.4);
+      border-radius: 30px;
+      background: rgba(5, 8, 20, 0.62);
+      box-shadow: 0 25px 85px rgba(0, 0, 0, 0.45);
+      animation: arrive 1.2s ease both;
+    }
+
+    @keyframes arrive {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .small-title {
+      margin: 0 0 20px;
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.7rem, 9vw, 5.7rem);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    h1 span {
+      display: block;
+      margin-top: 15px;
+      color: var(--gold);
+      font-size: clamp(1.4rem, 4vw, 2.3rem);
+      font-style: italic;
+    }
+
+    .message {
+      max-width: 570px;
+      margin: 30px auto 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      line-height: 1.8;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 42px auto 0;
+    }
+
+    .time-box {
+      min-width: 0;
+      padding: 18px 8px;
+      border: 1px solid rgba(234, 198, 107, 0.28);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .number {
+      display: block;
+      color: var(--gold);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.7rem, 5vw, 3rem);
+    }
+
+    .label {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.66rem;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .locked {
+      margin-top: 35px;
+      color: var(--gold);
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 4px rgba(234, 198, 107, 0.2); }
+      to { text-shadow: 0 0 19px rgba(234, 198, 107, 0.85); }
+    }
+
+    .hint {
+      margin: 20px 0 0;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 480px) {
+      .countdown { gap: 7px; }
+      .time-box { padding: 16px 4px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="stars" id="stars"></div>
+
+  <main class="card">
+    <p class="small-title">A secret birthday surprise</p>
+
+    <h1>
+      For Ghita
+      <span>my TiTa 🥺❤️‍🩹</span>
+    </h1>
+
+    <p class="message">
+      Something special is being prepared for you. It is not ready to be opened yet,
+      but when the clock reaches midnight, a little world made only for you will unlock.
+    </p>
+
+    <section class="countdown" aria-label="Countdown to Ghita's birthday">
+      <div class="time-box">
+        <span class="number" id="days">00</span>
+        <span class="label">Days</span>
+      </div>
+      <div class="time-box">
+        <span class="number" id="hours">00</span>
+        <span class="label">Hours</span>
+      </div>
+      <div class="time-box">
+        <span class="number" id="minutes">00</span>
+        <span class="label">Minutes</span>
+      </div>
+      <div class="time-box">
+        <span class="number" id="seconds">00</span>
+        <span class="label">Seconds</span>
+      </div>
+    </section>
+
+    <p class="locked" id="status">Locked until 6 October, 00:00 — Morocco time</p>
+    <p class="hint">From someone who is thinking about you 🥺❤️‍🩹</p>
+  </main>
+
+  <script>
+    const stars = document.getElementById("stars");
+
+    for (let i = 0; i < 90; i++) {
+      const star = document.createElement("span");
+      star.className = "star";
+      const size = 1 + Math.random() * 3;
+
+      star.style.width = size + "px";
+      star.style.height = size + "px";
+      star.style.left = Math.random() * 100 + "%";
+      star.style.top = Math.random() * 100 + "%";
+      star.style.animationDelay = Math.random() * 3 + "s";
+      star.style.animationDuration = 1.5 + Math.random() * 2.5 + "s";
+
+      stars.appendChild(star);
+    }
+
+    const target = new Date("2026-10-06T00:00:00+01:00").getTime();
+
+    function updateCountdown() {
+      const remaining = target - Date.now();
+
+      if (remaining <= 0) {
+        document.getElementById("days").textContent = "00";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent = "00";
+        document.getElementById("status").textContent =
+          "It is time, TiTa. Your surprise is waiting 🥺❤️‍🩹";
+        return;
+      }
+
+      const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((remaining / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((remaining / (1000 * 60)) % 60);
+      const seconds = Math.floor((remaining / 1000) % 60);
+
+      document.getElementById("days").textContent = String(days).padStart(2, "0");
+      document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
