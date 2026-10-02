@@ -24,7 +24,7 @@
       min-height: 100vh;
       display: grid;
       place-items: center;
-      overflow: hidden;
+      overflow-x: hidden;
       color: var(--text);
       font-family: Arial, Helvetica, sans-serif;
       background:
@@ -228,15 +228,37 @@
       border-radius: 999px;
       color: var(--pink-dark);
       background: rgba(255, 255, 255, 0.58);
+      font-family: inherit;
       font-size: 0.92rem;
       font-weight: 800;
-      text-decoration: none;
+      cursor: pointer;
       transition: transform 0.2s ease, background 0.2s ease;
     }
 
     .song-link:hover {
       transform: translateY(-3px) scale(1.02);
       background: white;
+    }
+
+    .music-box {
+      display: none;
+      width: min(100%, 560px);
+      margin: 18px auto 0;
+      overflow: hidden;
+      border-radius: 18px;
+      box-shadow: 0 12px 30px rgba(165, 61, 103, 0.25);
+      animation: reveal 0.6s ease both;
+    }
+
+    .music-box.show {
+      display: block;
+    }
+
+    .music-box iframe {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
     }
 
     @keyframes reveal {
@@ -322,14 +344,18 @@
       Mazal shwiya a TiTa… lsurprise ghadi tt7ell nhar 6 October m3a 00:00 😘
     </p>
 
-    <a
-      class="song-link"
-      href="https://www.youtube.com/watch?v=2N0JplmmsGY"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <button class="song-link" id="songButton" type="button">
       Dghya… sme3i wa7d lghnia katfakkerni fik ♫
-    </a>
+    </button>
+
+    <div class="music-box" id="musicBox">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/2N0JplmmsGY?rel=0"
+        title="A special song for TiTa"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
 
     <a class="gift-link" id="giftLink" href="https://ynsrch.github.io">
       7elli lhadya dyalk a TiTa 🥺❤️‍🩹
@@ -341,6 +367,8 @@
   <script>
     const sparkles = document.getElementById("sparkles");
     const hearts = document.getElementById("hearts");
+    const songButton = document.getElementById("songButton");
+    const musicBox = document.getElementById("musicBox");
 
     for (let i = 0; i < 65; i++) {
       const sparkle = document.createElement("span");
@@ -363,6 +391,16 @@
       heart.style.fontSize = 14 + Math.random() * 20 + "px";
       hearts.appendChild(heart);
     }
+
+    songButton.addEventListener("click", () => {
+      musicBox.classList.toggle("show");
+
+      if (musicBox.classList.contains("show")) {
+        songButton.textContent = "Hadi lghnia dyalna 🥺❤️‍🩹";
+      } else {
+        songButton.textContent = "Dghya… sme3i wa7d lghnia katfakkerni fik ♫";
+      }
+    });
 
     const target = new Date("2026-10-06T00:00:00+01:00").getTime();
 
