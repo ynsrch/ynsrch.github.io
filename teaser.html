@@ -220,6 +220,25 @@
       filter: brightness(1.08);
     }
 
+    .song-link {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 12px 20px;
+      border: 1px solid rgba(220, 93, 148, 0.35);
+      border-radius: 999px;
+      color: var(--pink-dark);
+      background: rgba(255, 255, 255, 0.58);
+      font-size: 0.92rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .song-link:hover {
+      transform: translateY(-3px) scale(1.02);
+      background: white;
+    }
+
     @keyframes reveal {
       from {
         opacity: 0;
@@ -243,7 +262,7 @@
     }
 
     .hint {
-      margin: 22px 0 0;
+      margin: 18px 0 0;
       color: #a34b70;
       font-size: 0.86rem;
     }
@@ -302,6 +321,15 @@
     <p class="locked" id="status">
       Mazal shwiya a TiTa… lsurprise ghadi tt7ell nhar 6 October m3a 00:00 😘
     </p>
+
+    <a
+      class="song-link"
+      href="https://www.youtube.com/watch?v=2N0JplmmsGY"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Dghya… sme3i wa7d lghnia katfakkerni fik ♫
+    </a>
 
     <a class="gift-link" id="giftLink" href="https://ynsrch.github.io">
       7elli lhadya dyalk a TiTa 🥺❤️‍🩹
