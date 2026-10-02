@@ -14,7 +14,9 @@
       --muted: #d9d9dc;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -46,8 +48,15 @@
     }
 
     @keyframes twinkle {
-      from { opacity: 0.2; transform: scale(0.7); }
-      to { opacity: 1; transform: scale(1.5); }
+      from {
+        opacity: 0.2;
+        transform: scale(0.7);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1.5);
+      }
     }
 
     .card {
@@ -63,8 +72,15 @@
     }
 
     @keyframes arrive {
-      from { opacity: 0; transform: translateY(25px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .small-title {
@@ -141,8 +157,50 @@
     }
 
     @keyframes glow {
-      from { text-shadow: 0 0 4px rgba(234, 198, 107, 0.2); }
-      to { text-shadow: 0 0 19px rgba(234, 198, 107, 0.85); }
+      from {
+        text-shadow: 0 0 4px rgba(234, 198, 107, 0.2);
+      }
+
+      to {
+        text-shadow: 0 0 19px rgba(234, 198, 107, 0.85);
+      }
+    }
+
+    .gift-link {
+      display: none;
+      margin-top: 28px;
+      padding: 16px 28px;
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      color: #1d1607;
+      background: var(--gold);
+      box-shadow: 0 0 28px rgba(234, 198, 107, 0.55);
+      font-size: 1rem;
+      font-weight: 800;
+      text-decoration: none;
+      animation: reveal 0.8s ease both, glow 2s ease-in-out infinite alternate;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .gift-link.show {
+      display: inline-block;
+    }
+
+    .gift-link:hover {
+      transform: translateY(-4px);
+      background: #f8dc8b;
+    }
+
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     .hint {
@@ -152,8 +210,13 @@
     }
 
     @media (max-width: 480px) {
-      .countdown { gap: 7px; }
-      .time-box { padding: 16px 4px; }
+      .countdown {
+        gap: 7px;
+      }
+
+      .time-box {
+        padding: 16px 4px;
+      }
     }
   </style>
 </head>
@@ -179,21 +242,31 @@
         <span class="number" id="days">00</span>
         <span class="label">Days</span>
       </div>
+
       <div class="time-box">
         <span class="number" id="hours">00</span>
         <span class="label">Hours</span>
       </div>
+
       <div class="time-box">
         <span class="number" id="minutes">00</span>
         <span class="label">Minutes</span>
       </div>
+
       <div class="time-box">
         <span class="number" id="seconds">00</span>
         <span class="label">Seconds</span>
       </div>
     </section>
 
-    <p class="locked" id="status">Locked until 6 October, 00:00 — Morocco time</p>
+    <p class="locked" id="status">
+      Locked until 6 October, 00:00 — Morocco time
+    </p>
+
+    <a class="gift-link" id="giftLink" href="https://ynsrch.github.io">
+      Open your birthday gift, TiTa 🥺❤️‍🩹
+    </a>
+
     <p class="hint">From someone who is thinking about you 🥺❤️‍🩹</p>
   </main>
 
@@ -203,6 +276,7 @@
     for (let i = 0; i < 90; i++) {
       const star = document.createElement("span");
       star.className = "star";
+
       const size = 1 + Math.random() * 3;
 
       star.style.width = size + "px";
@@ -225,8 +299,11 @@
         document.getElementById("hours").textContent = "00";
         document.getElementById("minutes").textContent = "00";
         document.getElementById("seconds").textContent = "00";
+
         document.getElementById("status").textContent =
-          "It is time, TiTa. Your surprise is waiting 🥺❤️‍🩹";
+          "Happy Birthday, TiTa 🥺❤️‍🩹 Your surprise is ready.";
+
+        document.getElementById("giftLink").classList.add("show");
         return;
       }
 
@@ -235,10 +312,17 @@
       const minutes = Math.floor((remaining / (1000 * 60)) % 60);
       const seconds = Math.floor((remaining / 1000) % 60);
 
-      document.getElementById("days").textContent = String(days).padStart(2, "0");
-      document.getElementById("hours").textContent = String(hours).padStart(2, "0");
-      document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
-      document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+      document.getElementById("days").textContent =
+        String(days).padStart(2, "0");
+
+      document.getElementById("hours").textContent =
+        String(hours).padStart(2, "0");
+
+      document.getElementById("minutes").textContent =
+        String(minutes).padStart(2, "0");
+
+      document.getElementById("seconds").textContent =
+        String(seconds).padStart(2, "0");
     }
 
     updateCountdown();
