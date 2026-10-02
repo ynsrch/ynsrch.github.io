@@ -3,10 +3,402 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Website</title>
+  <title>Happy Birthday, My Love ❤️</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #ffffff;
+      background:
+        radial-gradient(circle at top left, #ff7eb3 0%, transparent 35%),
+        radial-gradient(circle at bottom right, #8e2de2 0%, transparent 40%),
+        linear-gradient(135deg, #3b0a45, #a1134f, #ff5f8f);
+    }
+
+    .hearts {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -80px;
+      color: rgba(255, 255, 255, 0.7);
+      animation: floatUp linear infinite;
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg) scale(0.8);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-115vh) rotate(360deg) scale(1.4);
+        opacity: 0;
+      }
+    }
+
+    main {
+      width: min(950px, 92%);
+      margin: auto;
+      padding: 50px 0 70px;
+    }
+
+    .hero,
+    .letter,
+    .memories,
+    .final-message {
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 20px 50px rgba(35, 0, 30, 0.3);
+      backdrop-filter: blur(12px);
+      border-radius: 28px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 55px 25px;
+      margin-bottom: 28px;
+      animation: appear 1s ease-out;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .small-title {
+      margin: 0 0 12px;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #ffe0ef;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.7rem, 9vw, 5.8rem);
+      line-height: 1;
+      text-shadow: 0 5px 18px rgba(80, 0, 60, 0.4);
+    }
+
+    .subtitle {
+      width: min(650px, 100%);
+      margin: 24px auto 0;
+      font-size: clamp(1.05rem, 3vw, 1.35rem);
+      line-height: 1.7;
+      color: #fff3f8;
+    }
+
+    .gift-button {
+      border: none;
+      margin-top: 30px;
+      padding: 16px 28px;
+      border-radius: 50px;
+      background: #ffffff;
+      color: #b20d58;
+      font-size: 1.05rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 10px 25px rgba(80, 0, 50, 0.35);
+    }
+
+    .gift-button:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 15px 35px rgba(80, 0, 50, 0.5);
+    }
+
+    .surprise {
+      display: none;
+      margin-top: 28px;
+      padding: 23px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.18);
+      animation: appear 0.8s ease-out;
+    }
+
+    .surprise.show {
+      display: block;
+    }
+
+    .surprise h2 {
+      margin: 0 0 12px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2rem;
+    }
+
+    .surprise p {
+      margin: 0;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    .letter,
+    .memories,
+    .final-message {
+      margin-top: 28px;
+      padding: 38px 28px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.8rem, 5vw, 2.7rem);
+      text-align: center;
+    }
+
+    .letter p {
+      max-width: 720px;
+      margin: 16px auto;
+      font-size: 1.12rem;
+      line-height: 1.85;
+      color: #fff8fb;
+    }
+
+    .signature {
+      margin-top: 28px !important;
+      text-align: right;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.4rem !important;
+      font-style: italic;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 25px;
+    }
+
+    .photo-box {
+      min-height: 210px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      text-align: center;
+      border: 2px dashed rgba(255, 255, 255, 0.65);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff6fa;
+      font-size: 1rem;
+    }
+
+    .photo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+
+    .final-message {
+      text-align: center;
+    }
+
+    .final-message p {
+      margin: 0 auto;
+      max-width: 700px;
+      font-size: 1.2rem;
+      line-height: 1.8;
+    }
+
+    .big-heart {
+      display: inline-block;
+      margin-top: 18px;
+      font-size: 3.5rem;
+      animation: beat 1.1s infinite;
+    }
+
+    @keyframes beat {
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.22);
+      }
+    }
+
+    footer {
+      padding-top: 28px;
+      text-align: center;
+      color: #ffe4f0;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 700px) {
+      main {
+        padding-top: 25px;
+      }
+
+      .hero {
+        padding: 42px 20px;
+      }
+
+      .letter,
+      .memories,
+      .final-message {
+        padding: 30px 20px;
+      }
+
+      .photo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .photo-box {
+        min-height: 190px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Hello!</h1>
-  <p>This is my first GitHub website.</p>
+  <div class="hearts" id="hearts"></div>
+
+  <main>
+    <section class="hero">
+      <!-- CHANGE HER NAME HERE -->
+      <p class="small-title">A special birthday page for</p>
+      <h1>My Beautiful Love ❤️</h1>
+
+      <!-- CHANGE THIS SHORT MESSAGE -->
+      <p class="subtitle">
+        Today is all about celebrating the wonderful, kind, beautiful person
+        you are. Happy Birthday, my love.
+      </p>
+
+      <button class="gift-button" id="giftButton">
+        🎁 Open Your Birthday Gift
+      </button>
+
+      <div class="surprise" id="surprise">
+        <h2>Happy Birthday, my princess! 🎂</h2>
+
+        <!-- CHANGE THIS SURPRISE MESSAGE -->
+        <p>
+          I hope this new year of your life brings you happiness, peace,
+          success, beautiful memories, and everything your heart wishes for.
+          Thank you for being you, and for making my life brighter.
+        </p>
+      </div>
+    </section>
+
+    <section class="letter">
+      <h2>A Letter for You 💌</h2>
+
+      <!-- REPLACE THIS WITH YOUR REAL PERSONAL MESSAGE -->
+      <p>
+        On your birthday, I want you to remember how special you are to me.
+        Your smile, your voice, your kindness, and the little things you do
+        make every day more beautiful.
+      </p>
+
+      <p>
+        I am grateful for every moment, every conversation, every laugh, and
+        every memory we share. I hope today reminds you that you are deeply
+        loved and appreciated.
+      </p>
+
+      <p>
+        May this year bring you closer to your dreams. I will always wish the
+        best for you, support you, and be proud of the amazing person you are.
+      </p>
+
+      <!-- CHANGE YOUR NAME HERE -->
+      <p class="signature">With all my love,<br>Your Youness ❤️</p>
+    </section>
+
+    <section class="memories">
+      <h2>Our Little Memories ✨</h2>
+
+      <div class="photo-grid">
+        <!-- You can replace the text with images later -->
+        <div class="photo-box">
+          Our first favourite memory ❤️
+        </div>
+
+        <div class="photo-box">
+          A moment that always makes me smile 🌹
+        </div>
+
+        <div class="photo-box">
+          The beautiful memories still waiting for us ✨
+        </div>
+      </div>
+    </section>
+
+    <section class="final-message">
+      <h2>One More Thing…</h2>
+
+      <!-- CHANGE THIS FINAL MESSAGE -->
+      <p>
+        I hope you smile today as much as you make me smile. Happy Birthday,
+        my love. You deserve the whole world.
+      </p>
+
+      <div class="big-heart">❤️</div>
+    </section>
+
+    <footer>
+      Made with love, especially for you.
+    </footer>
+  </main>
+
+  <script>
+    const heartsContainer = document.getElementById("hearts");
+
+    for (let i = 0; i < 35; i++) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "♥";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = 14 + Math.random() * 28 + "px";
+      heart.style.animationDuration = 7 + Math.random() * 8 + "s";
+      heart.style.animationDelay = Math.random() * 8 + "s";
+      heartsContainer.appendChild(heart);
+    }
+
+    const giftButton = document.getElementById("giftButton");
+    const surprise = document.getElementById("surprise");
+
+    giftButton.addEventListener("click", () => {
+      surprise.classList.toggle("show");
+
+      if (surprise.classList.contains("show")) {
+        giftButton.textContent = "❤️ Your Gift Is Opened ❤️";
+      } else {
+        giftButton.textContent = "🎁 Open Your Birthday Gift";
+      }
+    });
+  </script>
 </body>
 </html>
