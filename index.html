@@ -268,39 +268,53 @@
     }
 
     .memory-card {
+      position: relative;
       min-height: 225px;
-      padding: 28px 22px;
+      padding: 34px 25px 28px;
+      overflow: hidden;
       border: 1px solid rgba(220, 94, 145, 0.32);
       border-radius: 24px;
       background: linear-gradient(145deg, #fffafd, #ffe0eb);
       text-align: left;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .memory-card::before {
+      content: "♥";
+      display: block;
+      margin-bottom: 12px;
+      color: #e7659a;
+      font-size: 1.7rem;
+      line-height: 1;
+    }
+
+    .memory-card::after {
+      content: "";
+      position: absolute;
+      right: -35px;
+      bottom: -50px;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: rgba(238, 111, 165, 0.13);
     }
 
     .memory-card:hover {
-      transform: translateY(-7px);
-    }
-
-    .memory-number {
-      display: inline-grid;
-      width: 35px;
-      height: 35px;
-      place-items: center;
-      border-radius: 50%;
-      color: white;
-      background: #de5e92;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.82rem;
-      font-weight: 800;
+      transform: translateY(-7px) rotate(-0.5deg);
+      box-shadow: 0 16px 28px rgba(168, 43, 91, 0.18);
     }
 
     .memory-card h3 {
-      margin: 20px 0 12px;
+      position: relative;
+      z-index: 1;
+      margin: 0 0 12px;
       color: var(--pink-dark);
       font-size: 2rem;
     }
 
     .memory-card p {
+      position: relative;
+      z-index: 1;
       margin: 0;
       color: #76294a;
       font-size: 1.45rem;
@@ -521,7 +535,6 @@
 
       <div class="memory-grid">
         <article class="memory-card">
-          <span class="memory-number">01</span>
           <h3>Awal mra</h3>
           <p>
             Awal mra bghitk hiya mlli cheftk w d7kti liya,
@@ -530,7 +543,6 @@
         </article>
 
         <article class="memory-card">
-          <span class="memory-number">02</span>
           <h3>L7da mnsahach</h3>
           <p>
             L7da 3mrni nsaha hiya fach khdit Instagram dyalki.
@@ -538,7 +550,6 @@
         </article>
 
         <article class="memory-card">
-          <span class="memory-number">03</span>
           <h3>Mlli kanchofk</h3>
           <p>
             Mlli kanchofk, kan7ess b wa7d lfar7a b7al ila bnti 9dami.
