@@ -93,7 +93,7 @@
       text-align: center;
     }
 
-    .welcome-card, .panel, .memory-card, .message-card {
+    .welcome-card, .panel, .memory-card, .envelope-wrap {
       border: 1px solid rgba(255,255,255,.18);
       background: rgba(255, 247, 240, .1);
       box-shadow: 0 22px 65px rgba(0, 0, 0, .28);
@@ -139,7 +139,7 @@
       line-height: 1.8;
     }
 
-    .primary-button, .choice-button, .next-button, .memory-card {
+    .primary-button, .choice-button, .memory-card, .envelope {
       border: 0;
       cursor: pointer;
     }
@@ -238,19 +238,72 @@
 
     .message-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 
-    .message-card {
-      min-height: 260px;
-      padding: 26px 22px;
+    .envelope-wrap {
       border-radius: 22px;
-      color: var(--cream);
-      text-align: center;
+      overflow: hidden;
+      text-align: left;
       transition: transform .35s cubic-bezier(.22,1,.36,1), background .35s ease;
     }
 
-    .message-card:hover { transform: translateY(-9px); background: rgba(255,255,255,.15); }
+    .envelope-wrap:hover { transform: translateY(-8px); background: rgba(255,255,255,.15); }
+
+    .envelope {
+      position: relative;
+      width: 100%;
+      min-height: 240px;
+      padding: 26px 22px;
+      overflow: hidden;
+      color: var(--cream);
+      background: linear-gradient(145deg, rgba(193,81,125,.86), rgba(111,57,106,.94));
+      text-align: center;
+      transition: min-height .65s cubic-bezier(.22,1,.36,1), background .35s ease;
+    }
+
+    .envelope::before,
+    .envelope::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .envelope::before {
+      background: linear-gradient(135deg, transparent 49.5%, rgba(255,255,255,.16) 50%, transparent 50.5%);
+      opacity: .65;
+    }
+
+    .envelope::after {
+      top: 0;
+      bottom: auto;
+      height: 56%;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      background: linear-gradient(135deg, #d9749a, #a84575);
+      transform-origin: top center;
+      transition: transform .7s cubic-bezier(.22,1,.36,1);
+    }
+
+    .envelope-content { position: relative; z-index: 1; transition: transform .55s cubic-bezier(.22,1,.36,1), opacity .4s ease; }
     .message-icon { display: block; margin-bottom: 16px; font-size: 2.8rem; }
-    .message-card h3 { margin-bottom: 14px; color: var(--rose); }
-    .message-card p { margin: 0; line-height: 1.7; }
+    .envelope h3 { margin-bottom: 10px; color: var(--cream); }
+    .envelope-hint { margin: 0; color: rgba(255,247,240,.78); font-size: .92rem; }
+
+    .letter-slide {
+      max-height: 0;
+      padding: 0 22px;
+      overflow: hidden;
+      color: var(--ink);
+      background: var(--cream);
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: max-height .75s cubic-bezier(.22,1,.36,1), padding .75s cubic-bezier(.22,1,.36,1), opacity .45s ease .13s, transform .75s cubic-bezier(.22,1,.36,1);
+    }
+
+    .letter-slide p { margin: 0; line-height: 1.75; }
+
+    .envelope-wrap.open .envelope { min-height: 180px; }
+    .envelope-wrap.open .envelope::after { transform: rotateX(180deg); }
+    .envelope-wrap.open .envelope-content { transform: translateY(-8px); opacity: .72; }
+    .envelope-wrap.open .letter-slide { max-height: 230px; padding: 22px; opacity: 1; transform: translateY(0); }
 
     .final-panel {
       grid-column: 1 / -1;
@@ -347,11 +400,26 @@
         <section class="panel messages-panel" id="messagesPanel">
           <p class="eyebrow">wa7d b wa7d</p>
           <h2>Three messages for you</h2>
-          <p>brki 3la ay message bach t9ray wa7d lkalma mn 9elbi.</p>
+          <p>brki 3la ay envelope bach t9ray wa7d lkalma mn 9elbi.</p>
           <div class="message-grid">
-            <article class="message-card"><span class="message-icon">💌</span><h3>Envelope 1</h3><p>Kan9der lmjhoud dyalki bach tb9ay m3aya, thbini, w tdi 3la hbali.</p></article>
-            <article class="message-card"><span class="message-icon">💗</span><h3>Envelope 2</h3><p>Kntmana kol 3am nkono m3a b3diyatna far7anin w sabrin 3la ay 7aja katji 9damna.</p></article>
-            <article class="message-card"><span class="message-icon">✨</span><h3>Envelope 3</h3><p>Avec toi, tout devient plus beau.</p></article>
+            <article class="envelope-wrap">
+              <button class="envelope" type="button" aria-expanded="false">
+                <span class="envelope-content"><span class="message-icon">💌</span><h3>Envelope 1</h3><p class="envelope-hint">Brki hna bach t7ellih</p></span>
+              </button>
+              <div class="letter-slide"><p>Kan9der lmjhoud dyalki bach tb9ay m3aya, thbini, w tdi 3la hbali.</p></div>
+            </article>
+            <article class="envelope-wrap">
+              <button class="envelope" type="button" aria-expanded="false">
+                <span class="envelope-content"><span class="message-icon">💗</span><h3>Envelope 2</h3><p class="envelope-hint">Brki hna bach t7ellih</p></span>
+              </button>
+              <div class="letter-slide"><p>Kntmana kol 3am nkono m3a b3diyatna far7anin w sabrin 3la ay 7aja katji 9damna.</p></div>
+            </article>
+            <article class="envelope-wrap">
+              <button class="envelope" type="button" aria-expanded="false">
+                <span class="envelope-content"><span class="message-icon">✨</span><h3>Envelope 3</h3><p class="envelope-hint">Brki hna bach t7ellih</p></span>
+              </button>
+              <div class="letter-slide"><p>Avec toi, tout devient plus beau.</p></div>
+            </article>
           </div>
         </section>
 
@@ -382,8 +450,6 @@
     }
 
     const screens = document.querySelectorAll(".screen");
-    const game = document.getElementById("game");
-    const journey = document.getElementById("journey");
     const journeyTitle = document.getElementById("journeyTitle");
     const journeyHint = document.getElementById("journeyHint");
 
@@ -429,8 +495,15 @@
       });
     });
 
-    document.querySelectorAll(".memory-card, .message-card").forEach((card) => {
-      card.addEventListener("click", celebrate);
+    document.querySelectorAll(".memory-card").forEach((card) => card.addEventListener("click", celebrate));
+
+    document.querySelectorAll(".envelope").forEach((envelope) => {
+      envelope.addEventListener("click", () => {
+        const wrapper = envelope.closest(".envelope-wrap");
+        const isOpen = wrapper.classList.toggle("open");
+        envelope.setAttribute("aria-expanded", isOpen);
+        if (isOpen) celebrate();
+      });
     });
 
     document.getElementById("finalButton").addEventListener("click", () => {
