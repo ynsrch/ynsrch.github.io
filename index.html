@@ -112,19 +112,57 @@
       justify-content: center;
       padding: 55px 25px;
       text-align: center;
-      animation: arrive 1s ease both;
     }
 
-    @keyframes arrive {
+    .hero > * {
+      animation: heroReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .hero .eyebrow {
+      animation-delay: 0.1s;
+    }
+
+    .hero h1 {
+      animation-delay: 0.24s;
+    }
+
+    .hero .hero-text {
+      animation-delay: 0.4s;
+    }
+
+    .hero .scroll-button {
+      animation-delay: 0.56s;
+    }
+
+    @keyframes heroReveal {
       from {
         opacity: 0;
-        transform: translateY(25px) scale(0.98);
+        transform: translateY(28px) scale(0.96);
       }
 
       to {
         opacity: 1;
         transform: translateY(0) scale(1);
       }
+    }
+
+    .slide-in {
+      opacity: 0;
+      transform: translateY(48px) scale(0.975);
+      transition:
+        opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.35s ease;
+      will-change: opacity, transform;
+    }
+
+    .slide-in.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .slide-in.is-visible:hover {
+      box-shadow: 0 28px 70px rgba(117, 27, 67, 0.3);
     }
 
     .eyebrow {
@@ -182,13 +220,14 @@
       font-weight: 700;
       text-decoration: none;
       cursor: pointer;
-      transition: transform 0.2s ease, filter 0.2s ease;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s ease, box-shadow 0.3s ease;
     }
 
     .scroll-button:hover,
     .final-button:hover {
       transform: translateY(-4px) scale(1.03);
       filter: brightness(1.08);
+      box-shadow: 0 17px 32px rgba(185, 45, 102, 0.42);
     }
 
     .section-card {
@@ -276,7 +315,7 @@
       border-radius: 24px;
       background: linear-gradient(145deg, #fffafd, #ffe0eb);
       text-align: left;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
     }
 
     .memory-card::before {
@@ -300,8 +339,8 @@
     }
 
     .memory-card:hover {
-      transform: translateY(-7px) rotate(-0.5deg);
-      box-shadow: 0 16px 28px rgba(168, 43, 91, 0.18);
+      transform: translateY(-9px) rotate(-0.5deg) scale(1.015);
+      box-shadow: 0 18px 32px rgba(168, 43, 91, 0.22);
     }
 
     .memory-card h3 {
@@ -332,17 +371,23 @@
       box-shadow: 0 12px 24px rgba(168, 43, 91, 0.22);
       font-family: inherit;
       cursor: pointer;
-      transition: transform 0.2s ease, filter 0.2s ease;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s ease, box-shadow 0.3s ease;
     }
 
     .envelope:hover {
-      transform: translateY(-7px) rotate(-1deg);
-      filter: brightness(1.04);
+      transform: translateY(-8px) rotate(-1deg) scale(1.02);
+      filter: brightness(1.06);
+      box-shadow: 0 19px 32px rgba(168, 43, 91, 0.3);
     }
 
     .envelope-icon {
       display: block;
       font-size: 3rem;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .envelope:hover .envelope-icon {
+      transform: scale(1.16) rotate(-7deg);
     }
 
     .envelope strong {
@@ -366,7 +411,7 @@
 
     .envelope-message.show {
       display: block;
-      animation: reveal 0.55s ease both;
+      animation: reveal 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 
     .final-section {
@@ -402,7 +447,7 @@
 
     .final-message.show {
       display: block;
-      animation: reveal 0.7s ease both;
+      animation: reveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 
     @keyframes reveal {
@@ -458,6 +503,22 @@
       text-align: center;
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .slide-in {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
     @media (max-width: 700px) {
       main {
         padding-top: 24px;
@@ -501,7 +562,7 @@
       <a class="scroll-button" href="#letter">Surprise?</a>
     </section>
 
-    <section class="section-card letter" id="letter">
+    <section class="section-card letter slide-in" id="letter">
       <p class="section-label">Risala mn 9elbi</p>
 
       <h2>Ptipana 😍😝</h2>
@@ -525,7 +586,7 @@
       </p>
     </section>
 
-    <section class="section-card memories">
+    <section class="section-card memories slide-in">
       <p class="section-label">Dikrayatna</p>
       <h2>Three little memories</h2>
 
@@ -558,7 +619,7 @@
       </div>
     </section>
 
-    <section class="section-card envelopes">
+    <section class="section-card envelopes slide-in">
       <p class="section-label">wa7d b wa7d</p>
       <h2>Three messages for you</h2>
 
@@ -604,7 +665,7 @@
       </div>
     </section>
 
-    <section class="section-card final-section">
+    <section class="section-card final-section slide-in">
       <p class="section-label">A5ir klma</p>
       <h2>Wa7d lmessage lik</h2>
 
@@ -626,7 +687,7 @@
       </div>
     </section>
 
-    <section class="closing">
+    <section class="closing slide-in">
       <p>Happy Birthday, kbida dyali. Dima bghit nchofk far7ana 🥺❤️‍🩹</p>
       <div class="closing-heart">❤️‍🩹</div>
     </section>
@@ -661,6 +722,18 @@
       heart.style.animationDuration = 8 + Math.random() * 8 + "s";
       hearts.appendChild(heart);
     }
+
+    const slideSections = document.querySelectorAll(".slide-in");
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+
+    slideSections.forEach((section) => sectionObserver.observe(section));
 
     document.querySelectorAll(".envelope").forEach((button) => {
       button.addEventListener("click", () => {
