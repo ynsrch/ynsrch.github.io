@@ -409,7 +409,10 @@
     });
 
     let redirecting = false;
-    const target = new Date("2026-10-06T00:00:00Z").getTime();
+
+    // 6 October 2026 at 00:00 (midnight) on the visitor's own device clock
+    // Month is zero-based in JavaScript: 9 = October
+    const target = new Date(2026, 9, 6, 0, 0, 0).getTime();
 
     function updateCountdown() {
       const remaining = target - Date.now();
